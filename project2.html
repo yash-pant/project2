@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('#form').onsubmit = function() {
+                    const name = document.querySelector('#name').value;
+                    alert(`Hello ${name}!`);
+                };
+            });
+            // Set starting value of counter to 0
+            if (!localStorage.getItem('name'))
+                localStorage.setItem('name', '');
+
+            // Load current value of  counter
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('#name').innerHTML = localStorage.getItem('name');
+
+                // Count every time button is clicked
+                document.querySelector('button').onclick = () => {
+                    // Increment current counter
+                    let counter = localStorage.getItem('name');
+                    counter++;
+
+                    // Update counter
+                    document.querySelector('#name').innerHTML = name;
+                    localStorage.setItem('name', name);
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+
+            // By default, submit button is disabled
+            document.querySelector('#submit').disabled = true;
+
+            // Enable button only if there is text in the input field
+            document.querySelector('#task').onkeyup = () => {
+                if (document.querySelector('#task').value.length > 0)
+                    document.querySelector('#submit').disabled = false;
+                else
+                    document.querySelector('#submit').disabled = true;
+            };
+
+            document.querySelector('#new-task').onsubmit = () => {
+
+                // Create new item for list
+                const li = document.createElement('li');
+                li.innerHTML = document.querySelector('#task').value;
+
+                // Add new item to task list
+                document.querySelector('#tasks').append(li);
+
+                // Clear input field and disable button again
+                document.querySelector('#task').value = '';
+                document.querySelector('#submit').disabled = true;
+
+                // Stop form from submitting
+                return false;
+            };
+
+            });
+        </script>
+        <title>My Website</title>
+    </head>
+    <body>
+        <form id="form">
+            <input id="name" autocomplete="off" autofocus placeholder="Name" type="text">
+            <input type="submit">
+        </form>
+        <h1>What do you want in your grocery shopping list?</h1>
+        <ul id="tasks">
+        </ul>
+        <form id="new-task">
+            <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
+            <input id="submit" type="submit">
+        </form>
+    </body>
+</html>
