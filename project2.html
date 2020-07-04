@@ -2,6 +2,8 @@
 <html>
     <head>
         <script>
+            localStorage.setItem('name')
+            localStorage.getItem('name')
             document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#form').onsubmit = function() {
                     const name = document.querySelector('#name').value;
@@ -27,7 +29,6 @@
                     localStorage.setItem('name', name);
                 }
             });
-
             document.addEventListener('DOMContentLoaded', () => {
 
             // By default, submit button is disabled
@@ -57,7 +58,6 @@
                 // Stop form from submitting
                 return false;
             };
-
             });
         </script>
         <title>My Website</title>
